@@ -7,7 +7,6 @@ import org.launchcode.models.PositionType;
 import org.launchcode.models.data.JobData;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 
 /**
@@ -16,11 +15,16 @@ import java.util.ArrayList;
 public class JobForm {
 
     @NotNull
-    @Size(min=1, message = "Name may not be empty")
     private String name;
 
     @NotNull
     private int employerId;
+
+    /*
+        TODO #3 - Included other fields needed to create a job,
+        with correct validation attributes and display names.
+        Don't forget to add getters and setters
+     */
 
     @NotNull
     private int locationId;
@@ -31,12 +35,6 @@ public class JobForm {
     @NotNull
     private int positionTypeId;
 
-    /*
-        TODO #3 - Included other fields needed to create a job,
-        with correct validation attributes and display names.
-        Don't forget to add getters and setters
-     */
-
     private ArrayList<Employer> employers;
     private ArrayList<Location> locations;
     private ArrayList<CoreCompetency> coreCompetencies;
@@ -45,7 +43,6 @@ public class JobForm {
     public JobForm() {
 
         JobData jobData = JobData.getInstance();
-
 
         /*
             TODO #4 - populate the other ArrayList collections needed in the view
@@ -56,7 +53,22 @@ public class JobForm {
         coreCompetencies = jobData.getCoreCompetencies().findAll();
         positionTypes = jobData.getPositionTypes().findAll();
 
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getEmployerId() {
+        return employerId;
+    }
+
+    public void setEmployerId(int employerId) {
+        this.employerId = employerId;
     }
 
     public int getLocationId() {
@@ -81,22 +93,6 @@ public class JobForm {
 
     public void setPositionTypeId(int positionTypeId) {
         this.positionTypeId = positionTypeId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getEmployerId() {
-        return employerId;
-    }
-
-    public void setEmployerId(int employerId) {
-        this.employerId = employerId;
     }
 
     public ArrayList<Employer> getEmployers() {
